@@ -100,8 +100,10 @@ sudo -u postgres psql -U postgres -d geonode -c 'create extension postgis;'
 echo 'Installing geonode from git trunk'
 cd /home/
 #git clone https://github.com/GeoNode/geonode.git
+rm -R /home/geonode
 git clone -b master https://github.com/Geode/geonode.git
 cd geonode
+cp /setup/.gitignore /home/geonode/.gitignore
 pip install -e .
 paver setup
 echo 'overriding local_setup'
