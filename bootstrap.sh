@@ -103,7 +103,7 @@ cd /home/
 rm -R /home/geonode
 git clone -b master https://github.com/Geode/geonode.git
 cd geonode
-cp /setup/.gitignore /home/geonode/.gitignore
+cp /.vagrant/.gitignore /home/geonode/.gitignore
 pip install -e .
 paver setup
 echo 'overriding local_setup'
