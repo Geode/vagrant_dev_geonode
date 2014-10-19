@@ -106,7 +106,8 @@ git init
 git remote add origin https://github.com/Geode/geonode.git
 git fetch origin
 git checkout -b master
-cp /vagrant/.gitignore /home/geonode/.gitignore
+git reset origin/master
+cp /home/vagrant/.gitignore /home/geonode/.gitignore
 #git clone -b master https://github.com/Geode/geonode.git
 #cd geonode
 pip install -e .
