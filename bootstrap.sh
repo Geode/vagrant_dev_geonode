@@ -97,7 +97,7 @@ sudo -u postgres psql -U postgres -d geonode-imports -c 'GRANT ALL ON geometry_c
 sudo -u postgres psql -U postgres -d geonode-imports -c 'GRANT ALL ON spatial_ref_sys TO PUBLIC;'
 sudo -u postgres psql -U postgres -d geonode -c 'create extension postgis;'
 
-echo 'Installing geonode from git trunk'
+echo 'Installing geonode from git geode/geonode master'
 cd /home/
 #git clone https://github.com/GeoNode/geonode.git
 rm /home/geonode/.gitignore
