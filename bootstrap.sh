@@ -97,7 +97,7 @@ sudo -u postgres psql -U postgres -d geonode-imports -c 'GRANT ALL ON geometry_c
 sudo -u postgres psql -U postgres -d geonode-imports -c 'GRANT ALL ON spatial_ref_sys TO PUBLIC;'
 sudo -u postgres psql -U postgres -d geonode -c 'create extension postgis;'
 
-echo 'Installing geonode from git geode/geonode master'
+echo 'Cloning geonode from git geode/geonode master'
 cd /home/
 #git clone https://github.com/GeoNode/geonode.git
 rm /home/geonode/.gitignore
@@ -111,6 +111,7 @@ git checkout -t origin/master
 cp /home/vagrant/.gitignore /home/geonode/.gitignore
 #git clone -b master https://github.com/Geode/geonode.git
 #cd geonode
+echo 'Installing geonode with pip and paver setup'
 pip install -e .
 paver setup
 echo 'overriding local_setup'
