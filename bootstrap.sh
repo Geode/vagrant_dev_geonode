@@ -104,9 +104,8 @@ rm /home/geonode/.gitignore
 cd /home/geonode/
 git init
 git remote add origin https://github.com/Geode/geonode.git
-git fetch origin
-git checkout -b master
-git reset origin/master
+git fetch
+git checkout -t origin/master
 cp /home/vagrant/.gitignore /home/geonode/.gitignore
 #git clone -b master https://github.com/Geode/geonode.git
 #cd geonode
