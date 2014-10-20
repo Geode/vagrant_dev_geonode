@@ -102,7 +102,7 @@ cd /home/
 #git clone https://github.com/GeoNode/geonode.git
 rm /home/geonode/.gitignore
 rm -rf /home/geonode/*
-rm -rf /home/geonode/.git
+rm -rf /home/geonode/.??*
 cd /home/geonode/
 git init
 git remote add origin https://github.com/Geode/geonode.git
