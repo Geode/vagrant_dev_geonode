@@ -56,12 +56,12 @@ apt-get install -y nodejs
 npm install -y -g bower
 npm install -y -g grunt-cli
 
-echo ' > Fix bug, install gdal for development, step 1 of 3'
+echo ' > Fix bug, install gdal for development'
 add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 apt-get update
 apt-get -y install libgdal1h libgdal-dev python-gdal
 python -c "from osgeo import gdal; print gdal.__version__"
-echo ' > end step 1 of 3 < (nexts step will be done onto virtualenv geonode'
+echo ' > end fix gdal dev (nexts step will be done onto virtualenv)'
 
 echo ' Setting up virtualenv for geonode'
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
@@ -111,7 +111,7 @@ git checkout -t origin/master
 cp /home/vagrant/.gitignore /home/geonode/.gitignore
 #git clone -b master https://github.com/Geode/geonode.git
 #cd geonode
-echo 'Installing geonode with pip and paver setup'
+echo 'Installing geonode with pip and paver setup into geonode venv'
 pip install -e .
 paver setup
 echo 'overriding local_setup'
@@ -120,7 +120,7 @@ cp -f /setup/local_settings.py /home/geonode/geonode/local_settings.py
 echo 'installing databases'
 python manage.py syncdb --noinput
 python manage.py createsuperuser --username=geode --email=info@opengeode.be --noinput
-geonode-updateip localhost:1780
+/usr/sbin/geonode-updateip localhost:1780
 python manage.py collectstatic
 mkdir -p /home/geonode/geonode/uploaded
 chown www-data -R /home/geonode/geonode/uploaded
@@ -148,11 +148,11 @@ service tomcat7 stop
 cp downloaded/geoserver.war /var/lib/tomcat7/webapps/
 service tomcat7 start
 
-echo 'Installation dev tools for translation'
+echo 'Installation dev tools for translation with transifex'
 apt-get install -y python-sphinx
 apt-get install -y transifex-client
 pip install sphinx_rtd_theme
 cp /setup/.transifexrc /root/.transifexrc
-echo 'just update /root/.transifexrc with our credentials if you gonna manage translations.'
+echo 'just update /root/.transifexrc with our credentials if you are going to manage translations.'
 
 echo '@todo ? installing custom geonode project'
