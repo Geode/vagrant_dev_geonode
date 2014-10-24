@@ -21,7 +21,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 8000, host: 1708
   config.vm.network "forwarded_port", guest: 80, host: 1780
+  config.vm.network "forwarded_port", guest: 8080, host: 1788
 
 
   # Create a private network, which allows host-only access to the machine
@@ -44,7 +46,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
   config.vm.synced_folder "setup", "/setup"
-  config.vm.synced_folder "geonode", "/home/geonode"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.

@@ -98,49 +98,43 @@ sudo -u postgres psql -U postgres -d geonode-imports -c 'GRANT ALL ON spatial_re
 sudo -u postgres psql -U postgres -d geonode -c 'create extension postgis;'
 
 echo 'Cloning geonode from git geode/geonode master'
-cd /home/
-#git clone https://github.com/GeoNode/geonode.git
-rm /home/geonode/.gitignore
-rm -rf /home/geonode/*
-rm -rf /home/geonode/.??*
-cd /home/geonode/
-git init
-git remote add origin https://github.com/Geode/geonode.git
-git fetch
-git checkout -t origin/master
-cp /home/vagrant/.gitignore /home/geonode/.gitignore
-#git clone -b master https://github.com/Geode/geonode.git
-#cd geonode
+mkdir -p /opt/be/opengeode
+cd /opt/be/opengeode/
+git clone https://github.com/GeoNode/geonode.git
+cp -r geonode /var/www/
+cd /var/www/geonode/
+rm -rf .git*
+rm -rf .travis.yml
 echo 'Installing geonode with pip and paver setup into geonode venv'
 pip install -e .
 paver setup
 echo 'overriding local_setup'
-cp -f /setup/local_settings.py /home/geonode/geonode/local_settings.py
+cp -f /setup/local_settings.py /var/www/geonode/geonode/local_settings.py
 
 echo 'installing databases'
 python manage.py syncdb --noinput
 python manage.py createsuperuser --username=geode --email=info@opengeode.be --noinput
 /usr/sbin/geonode-updateip localhost:1780
 python manage.py collectstatic
-mkdir -p /home/geonode/geonode/uploaded
-chown www-data -R /home/geonode/geonode/uploaded
+mkdir -p /var/www/geonode/geonode/uploaded
+chown www-data -R /var/www/geonode/geonode/uploaded
 
 echo 'Configuring Apache'
 #sed -i "$ a\ServerName localhost" /etc/apache2/apache2.conf
 cp -f /setup/apache2.conf /etc/apache2/apache2.conf
 a2enmod wsgi
 a2enmod proxy_http
-cp -f /setup/wsgi.py /home/geonode/geonode/wsgi.py
+cp -f /setup/wsgi.py /var/www/geonode/geonode/wsgi.py
 cp -f /setup/geonode.conf /etc/apache2/sites-available/geonode.conf
 a2ensite geonode
 a2dissite 000-default
-chown www-data:www-data /home/geonode/geonode/static/
-chown www-data:www-data /home/geonode/geonode/uploaded/
-mkdir /home/geonode/geonode/static_root/
-chown www-data:www-data /home/geonode/geonode/static_root/
+chown www-data:www-data /var/www/geonode/geonode/static/
+chown www-data:www-data /var/www/geonode/geonode/uploaded/
+mkdir /var/www/geonode/geonode/static_root/
+chown www-data:www-data /var/www/geonode/geonode/static_root/
 service apache2 reload
 
-cd /home/geonode
+cd /var/www/geonode
 python manage.py collectstatic --noinput
 
 echo 'Moving to tomcat7'
