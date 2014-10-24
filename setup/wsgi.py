@@ -18,7 +18,7 @@
 #########################################################################
 
 import os, sys, site
-sys.path.append('/home/geonode/geonode')
+sys.path.append('/var/www/geonode/geonode')
 site.addsitedir('/home/.venvs/geonode/lib/python2.7/site-packages')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "geonode.settings")
 activate_this = os.path.expanduser("/home/.venvs/geonode/bin/activate_this.py")
