@@ -100,17 +100,17 @@ sudo -u postgres psql -U postgres -d geonode -c 'create extension postgis;'
 echo 'Cloning geonode from git geode/geonode master'
 cd /home/
 #git clone https://github.com/GeoNode/geonode.git
-rm /home/geonode/.gitignore
-rm -rf /home/geonode/*
-rm -rf /home/geonode/.??*
-cd /home/geonode/
-git init
-git remote add origin https://github.com/Geode/geonode.git
-git fetch
-git checkout -t origin/master
-cp /home/vagrant/.gitignore /home/geonode/.gitignore
-#git clone -b master https://github.com/Geode/geonode.git
-#cd geonode
+#rm /home/geonode/.gitignore
+#rm -rf /home/geonode/*
+#rm -rf /home/geonode/.??*
+#cd /home/geonode/
+#git init
+#git remote add origin https://github.com/Geode/geonode.git
+#git fetch
+#git checkout -t origin/master
+#cp /home/vagrant/.gitignore /home/geonode/.gitignore
+git clone -b master https://github.com/Geode/geonode.git
+cd geonode
 echo 'Installing geonode with pip and paver setup into geonode venv'
 pip install -e .
 paver setup
