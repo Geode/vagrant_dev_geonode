@@ -120,8 +120,8 @@ cp -f /setup/local_settings.py /home/geonode/geonode/local_settings.py
 echo 'installing databases'
 python manage.py syncdb --noinput
 python manage.py createsuperuser --username=geode --email=info@opengeode.be --noinput
-/usr/sbin/geonode-updateip localhost:1780
-python manage.py fixsitename
+#python manage.py fixsitename
+#geonode-updateip localhost:1780
 python manage.py collectstatic
 mkdir -p /home/geonode/geonode/uploaded
 chown www-data -R /home/geonode/geonode/uploaded
