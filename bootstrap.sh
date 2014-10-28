@@ -98,13 +98,9 @@ sudo -u postgres psql -U postgres -d geonode-imports -c 'GRANT ALL ON spatial_re
 sudo -u postgres psql -U postgres -d geonode -c 'create extension postgis;'
 
 echo 'Cloning geonode from git geode/geonode master'
-mkdir -p /opt/be/opengeode
-cd /opt/be/opengeode/
-git clone https://github.com/GeoNode/geonode.git
-cp -r geonode /var/www/
+cd /var/www/
+git clone https://github.com/Geode/geonode.git
 cd /var/www/geonode/
-rm -rf .git*
-rm -rf .travis.yml
 echo 'Installing geonode with pip and paver setup into geonode venv'
 pip install -e .
 paver setup
