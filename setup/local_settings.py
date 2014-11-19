@@ -21,7 +21,7 @@ DATABASES = {
 OGC_SERVER = {
     'default' : {
         'BACKEND' : 'geonode.geoserver',
-        'LOCATION' : 'http://localhost:1780/geoserver/',
+        'LOCATION' : 'http://localhost:8080/geoserver/',
         'PUBLIC_LOCATION' : 'http://localhost:8080/geoserver/',
         'USER' : 'admin',
         'PASSWORD' : 'geoserver',
@@ -70,4 +70,4 @@ MAP_BASELAYERS = [{
 # Default preview library
 LAYER_PREVIEW_LIBRARY = 'geoext'
 
-ALLOWED_HOST = ['localhost:1780','localhost']
+ALLOWED_HOST = ['localhost:1780','localhost:1781','localhost']
