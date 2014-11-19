@@ -70,4 +70,4 @@ MAP_BASELAYERS = [{
 # Default preview library
 LAYER_PREVIEW_LIBRARY = 'geoext'
 
-ALLOWED_HOST = ['localhost:1780','localhost:8000','localhost']
+ALLOWED_HOST = ['*']
