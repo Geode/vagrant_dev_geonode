@@ -75,7 +75,14 @@ python manage.py collectstatic --noinput
 #mkdir /home/vagrant/geonode/geonode/uploaded
 #mkdir /home/vagrant/geonode/staticroot
 
-echo '@todo : install Geonode custom site, from geode/imio_geonode github repo' 
+echo '@ongoing : install Geonode custom site, from geode/imio_geonode github repo' 
+cd ..
+git clone https://github.com/Geode/imio_geonode
+pip install -e imio_geonode
+cd imio_geonode
+cp imio_geonode/local_settings.py.sample imio_geonode/local_settings.py
+sed -i 's/SITENAME = '\''GeoNode'\''/SITENAME = '\''Imio-GeoNode'\''/g' imio_geonode/local_settings.py
+sed -i 's/SITEURL = '\''http:\/\/localhost\/'\''/SITEURL = '\''http:\/\/localhost:8000\/'\''/g' imio_geonode/local_settings.py
 
 echo 'final : see comments below into bottstrap.sh for starting geonode with paver' 
 #paver start
