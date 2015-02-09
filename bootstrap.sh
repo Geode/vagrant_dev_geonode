@@ -72,6 +72,7 @@ mkvirtualenv geonode --system-site-package
 workon geonode
 echo ' Debug : installing psycopg2 for python 2.7'
 pip install psycopg2
+pip install pyshp
 cd /home/
 
 echo 'configuring postgresql users and passwords :'
