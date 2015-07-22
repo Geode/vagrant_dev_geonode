@@ -16,7 +16,7 @@ packagelist=(
     libproj-dev            
     libxml2-dev            
     libxslt1-dev            
-    openjdk-6-jre          
+    openjdk-7-jre          
     patch                  
     postgresql-9.3         
     postgresql-9.3-postgis-2.1 
@@ -46,7 +46,7 @@ packagelist=(
 apt-get install -y ${packagelist[@]}
 apt-get build-dep -y python-lxml
 pip install virtualenvwrapper
-apt-get install -y --force-yes openjdk-6-jdk ant maven2 --no-install-recommends
+apt-get install -y --force-yes openjdk-7-jdk ant maven2 --no-install-recommends
 
 echo 'Statics devs tools'
 apt-get install -y git gettext
